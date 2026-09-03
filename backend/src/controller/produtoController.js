@@ -49,12 +49,15 @@ export async function cadastrarProduto(req, res) {
             valor
         } = req.body;
 
+        const usuario_logado = req.usuario.id;
+
         const produto = await Produto.create({
             dataCadastro,
             nome,
             descricao,
             quantidade,
-            valor
+            valor,
+            usuario_id: usuario_logado
         });
 
         return res.status(201).json(produto);

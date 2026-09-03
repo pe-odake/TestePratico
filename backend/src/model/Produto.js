@@ -35,6 +35,10 @@ const Produto = sequelize.define(
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: true
+        },
+            usuario_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false 
         }
     },
     {
