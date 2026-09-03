@@ -13,7 +13,7 @@
 
 .container-tabela table {
     width: 100%;
-    border-collapse: separate;
+    border-collapse: collapse; 
     text-align: left;
 }
 
@@ -21,15 +21,18 @@
     position: sticky;
     top: 0;
     z-index: 10;
-    color: #1e293b;
+    background-color: #000087; 
+    color: #ffffff;
     font-weight: 600;
     padding: 14px 12px;
+    border-bottom: 1px solid #000066;
 }
 
 .container-tabela td {
     padding: 14px 12px;
     color: #212529;
     vertical-align: middle;
+    border-bottom: 1px solid #e2e8f0; 
 }
 
 .actions {

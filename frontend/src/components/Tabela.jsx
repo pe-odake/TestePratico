@@ -1,24 +1,8 @@
 import '../styles/components/Tabela.css';
 import Delete from '../assets/delete.svg';
 import Edit from '../assets/edit.svg';
-import { useState, useEffect } from 'react';
-import { listarProdutos } from '../service/produtos.js'
 
-function Tabela() {
-
-    const [ produtos, setProdutos ] = useState([]);
-
-    useEffect(() => {
-        async function carregarProdutos() {
-          try {
-            const response = await listarProdutos(); 
-            setProdutos(response); 
-          } catch (error) {
-            console.error("Erro ao buscar produtos:", error);
-          }
-        }
-        carregarProdutos();
-      }, []);
+function Tabela({ produtos = [], onEditar, onDeletar}) {
 
     // FORMATADOR DE DATETIME E DINHEIRO
 
@@ -50,6 +34,7 @@ function Tabela() {
                         <th>Descrição</th>
                         <th>Quantidade</th>
                         <th>Valor</th>
+                        <th>Ativo</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
@@ -63,10 +48,11 @@ function Tabela() {
                                 <td>{produto.descricao}</td>
                                 <td>{produto.quantidade}</td>
                                 <td>{formatarMoeda.format(produto.valor)}</td>
+                                <td>{produto.ativo ? "Produto Ativo" : "Produto Inativo"}</td>
                                 <td>
-                                    <div class="actions">
-                                        <button type="button" aria-label="Editar"><img src={Edit} alt="Editar Produto" /></button>
-                                        <button type="button" aria-label="Excluir"><img src={Delete} alt="Deletar Produto" /></button>
+                                    <div className="actions">
+                                        <button type="button" aria-label="Editar" onClick={() => onEditar(produto)}><img src={Edit} alt="Editar Produto" /></button>
+                                        <button type="button" aria-label="Excluir" onClick={() => onDeletar(produto)}><img src={Delete} alt="Deletar Produto" /></button>
                                     </div>
                                 </td>
                             </tr>
