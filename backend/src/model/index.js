@@ -8,7 +8,7 @@ Usuario.hasMany(Produto, {
 
 Produto.belongsTo(Usuario, {
     foreignKey: 'usuario_id',
-    as: 'dono'
+    as: 'usuario'
 });
 
 export { Usuario, Produto };

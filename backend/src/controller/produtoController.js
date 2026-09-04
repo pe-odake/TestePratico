@@ -1,9 +1,17 @@
-import { Produto } from "../model/index.js";
+import { Produto, Usuario } from "../model/index.js"; 
 
 // GET
 export async function listarProdutos(req, res) { 
     try {
-        const produtos = await Produto.findAll();
+        const produtos = await Produto.findAll({
+            include: [
+                {
+                    model: Usuario, // TRAZER O OBJETO EM VEZ DO ID
+                    as: 'usuario', 
+                    attributes: { exclude: ['senha'] } // NÃO TRAZER NA RESPOSTA A SENHA
+                }
+            ]
+        });
 
         return res.status(200).json(produtos);
     } catch (error) {
@@ -20,7 +28,15 @@ export async function detalharProduto(req, res) {
     try {
         const { id } = req.params;
 
-        const produto = await Produto.findByPk(id);
+        const produto = await Produto.findByPk(id, {
+            include: [
+                {
+                    model: Usuario, // TRAZER O OBJETO EM VEZ DO ID DE NOVO PARA 1 RESPOSTA
+                    as: 'usuario', 
+                    attributes: { exclude: ['senha'] } // NÃO TRAZER NA RESPOSTA A SENHA
+                }
+            ]
+        });
 
         if (!produto) {
             return res.status(404).json({
