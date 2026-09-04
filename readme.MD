@@ -1,110 +1,125 @@
-# 📦 Teste Prático – Estágio em Desenvolvimento Web
+# CRUD de Produtos — Teste Técnico 
 
-**Vaga:** Estagiário(a) em Desenvolvimento Front-End / Back-End
+## Tecnologias utilizadas
 
----
+### Back-End
+- Node.js Express e sequelize ORM
 
-## 1. Visão Geral
+### Front-End
+- React.js
 
-Neste teste você deverá desenvolver um sistema simples de **CRUD (Create, Read, Update e Delete)** para cadastro de produtos.
+### Banco de Dados
+- MySQL
 
-O objetivo é avaliar seus conhecimentos básicos em:
+### O por que?
 
-- Desenvolvimento Front-End e Back-End
-- Manipulação de banco de dados relacional
-- Organização de código
-- Boas práticas de desenvolvimento
-- Controle de versão com Git
+Usei javascript como linguagem no backend por conta de ser a única entre as pedidas que eu conheço e ja tive contato, no front prefiri usar React.js pois na minha visão seria mais organizado, para banco de dados estava pensando em PostgreSQL, mas como já tinha utilizado MySQL algumas vezes e era preferencial escolhi usá-lo. 
 
-> 💡 **Dica:** Mantenha o código simples, organizado e bem documentado. Comentários claros são bem-vindos.
 
 ---
 
-## 2. Requisitos Técnicos
+## Funcionalidades implementadas
 
-### Tecnologias Sugeridas
-
-#### Back-End
-Escolha uma das opções abaixo:
-
-- C# + ASP.NET Core MVC 
-- PHP (Preferencial somente o PHP mas fique a vontade para usar frameworks do PHP)
-- JavaScript (Preferencial somente o Javascript puro mas fique a vontade para usar frameworks tanto do front-end e back-end)
-
-#### Banco de Dados
-- MySQL (Preferencial)
-- PostgreSQL
-- SQLServer
-- De sua preferência
-
-#### Front-End
-- HTML
-- CSS
-- JavaScript 
-
-Frameworks opcionais:
-
-- Bootstrap
-- Tailwind CSS
-- ReactJS
-  
-
-#### Controle de Versão
-
-- Git
-- GitHub
-  
-
-#### Documentação
-
-- Deixe pronto os scripts para criação das tabelas.
-- Crie um README.md para mais detalhes do projeto.
+Entreguei de funcionalidade obrigatórias, o CRUD completo, cadastrar produto, listar todos os produtos, ver produto por ID, editar produto por ID, deletar produto por ID de forma Soft sem realmente deletar banco e delete Hard onde de fato deleta do banco.
+De funcionalidade a mais eu realizei, a tela de Login e Register com JWT e identificação automática de data e usuário logado no cadastro.
 
 ---
 
-## 3. Funcionalidades obrigatórias
 
-### 📋 Produtos
+## Script do Banco de dados
 
-Criar uma tela contendo uma tabela com os seguintes campos:
+O script de criação das tabelas está disponível em `scripts.sql`
 
-- ID
-- Data de Cadastro
-- Usuário que cadastrou
-- Descrição
-- Quantidade
-- Valor
+```sql
+create database teste_pratico;
+use teste_pratico;
 
-Necessário que seja possível:
-- Cadastrar produto
-- Listar todos os produtos
-- Ver produto com base no ID
-- Editar produto com base no ID
-- Deletar produto com base no ID
+create table Usuario (
+    id bigint not null auto_increment,
+    nome varchar(50) not null,
+    email varchar(200) not null unique,
+    senha varchar(256) not null,
+    
+    primary key (id)
+);
 
-  
+create table Produto (
+    id bigint not null auto_increment,
+    dataCadastro datetime not null,
+    nome varchar(50) not null,
+    descricao varchar(200) not null,
+    quantidade integer not null default 0,
+    valor decimal(10,2) not null default 0.00,
+    ativo boolean not null default 1,
+    usuario_id bigint not null,
+    
+    primary key (id),
+    constraint fk_usuario_id_produto foreign key (usuario_id)
+    references usuario(id)
+);
+
+```
+
 ---
 
-### ➕ Diferenciais no projeto (OPCIONAL)
+## Para rodar o projeto
 
-- Ordenação ASC e DESC nas colunas (Data de Cadastro, ID, Usuário, Valor) na tela de lista de produtos de forma dinâmica.
-- Filtros na tela de lista de produtos.
-- CRUD de usuários.
-- Tela de Login e cadastro de usuários.
-- No cadastro de produto o sistema identifique a data atual e o usuário atual que esta logado no sistema e salve no banco.
+### 1. Clonar o repositório
+```bash
+git clone https://github.com/pe-odake/TestePratico.git
+```
 
-Mais complexos:
-- Design Patterns (abstrair mais as camadas como por exemplo: Controller -> Interfaces/Services -> Interfaces/Repositories -> Context que acessa o banco.
-- Módulo de testes unitários.
-- Autenticação com Json Web Token (JWT).
-  
+### 2. Banco de dados
 
-#### Regras
+Rode o script do banco de dados para criar o banco e as tabelas.
 
-- Assim que receber o teste, você terá o prazo de 72 horas para realizar o projeto (3 dias), nos envie o link do repositório do projeto pronto nos emails abaixo: 
-- gerson.silva@bureauveritas.com
-- gabriel.santossilva@bureauveritas.com
+### 3. Configurar variáveis de ambiente
+Backend
+```
+MYSQL_BD_NOME=nome do bando de dados
+MYSQL_BD_USER=nome do usuario do banco
+MYSQL_BD_PASSWORD=senha do banco
+MYSQL_BD_HOST=localhost 
+MYSQL_BD_PORT=3306
+PORT=3000
+JWT_SECRET=codigo para o jwt 
+```
+Fronted
+```
+VITE_URL_BACKEND=link do seu backend onde ele está 
+```
 
-#### AVISO IMPORTANTE
+### 4. Instalar dependências
 
-- O uso de inteligência artificial no desenvolvimento do projeto deve ser justificado nas próximas etapas do processo, pois nos ajuda a entender se o candidato entende de programação.
+Backend
+```bash
+cd backend
+npm install
+```
+
+Frontend
+```bash
+cd frontend
+npm install
+```
+
+### 5. Executar o projeto
+
+Backend
+```bash
+npm run dev
+```
+
+Frontend
+```bash
+npm run dev
+```
+
+O Frontend estará disponível em: `http://localhost:5173`  
+O Backend estará disponível em: `http://localhost:3000`
+
+---
+
+## Uso de Inteligência Artificial
+
+Meus usos com IA foram Stitch.ai para gerar um design inicial de referência para o frontend que eu segui, usei também o gemini tirar dúvidas sobre sintaxe e dependências que eu tive ao desenvolver o backend por conta de fazer tempo que não faço backend com javascript e sobre o ORM sequelize.
