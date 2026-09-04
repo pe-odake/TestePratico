@@ -4,7 +4,7 @@ import Tabela from '../components/Tabela.jsx';
 import ModalProduto from '../components/ModalProduto.jsx';
 import ModalDelete from '../components/ModalDelete.jsx';
 import { useState, useEffect } from 'react';
-import { listarProdutos } from '../service/produtos.js'
+import { listarProdutos, detalharProduto } from '../service/produtos.js'
 
 function Home() {
 
@@ -12,7 +12,7 @@ function Home() {
   const [modalProdutoAberto, setModalProdutoAberto] = useState(false);
   const [modalDeleteAberto, setModalDeleteAberto] = useState(false);
   const [produtoSelecionado, setProdutoSelecionado] = useState(null);
-  const [produtoSelecionadoId, setProdutoSelecionadoId] = useState(null);
+  const [idPesquisa, setIdPesquisa] = useState('');
 
   const carregarProdutos = async () => {
     try {
@@ -26,6 +26,20 @@ function Home() {
   useEffect(() => {
     carregarProdutos();
   }, []);
+
+  const handleBuscarProdId = async () => {
+    if (!idPesquisa) {
+      carregarProdutos();
+      return;
+    }
+    try {
+      const produto = await detalharProduto(idPesquisa);
+      setProdutos([produto]);
+    } catch (error) {
+      console.error("Produto não existe", error);
+    }
+  };
+
 
   const handleCadastrar = () => {
     setProdutoSelecionado(null);
@@ -52,9 +66,13 @@ function Home() {
           <div className="info-banner">
             <h1>CRUD de Produtos</h1>
           </div>
-          <button className="add-produto" onClick={handleCadastrar}>
-            Cadastrar Produto
-          </button>
+
+          <div className="buscar-id">
+            <input type="number" placeholder="Buscar por ID" value={idPesquisa} onChange={(e) => setIdPesquisa(e.target.value)} className="input-buscarid"/>
+            <button type="button" onClick={handleBuscarProdId} className="btn-buscar-id">Buscar</button>
+          </div>
+
+          <button className="add-produto" onClick={handleCadastrar}>Cadastrar Produto</button>
         </div>
 
         <Tabela produtos={produtos} onEditar={handleEditar} onDeletar={handleDeletar}/>

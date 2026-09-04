@@ -14,25 +14,69 @@
     width: 100%;
 }
 
+/* BANNER */
+
 .banner {
     background-color: #f9f9fd;
     box-shadow: 0 3px 7px rgba(0, 0, 0, 0.08); 
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; 
     align-items: center;
     width: 85%;
-    margin: 0 auto; 
-    margin: 70px 0;
-    padding: 15px 20px;
+    margin: 40px auto; 
+    padding: 15px 24px;
+    border-radius: 8px;
+}
+
+/* TEXTO ESQUERDA */
+
+.info-banner h1 {
+    font-size: 1.5rem;
+    color: #1e293b;
+    margin: 0;
 }
 
 .info-banner {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start; 
-    width: 70%;
+    align-items: flex-start;
 }
+
+/* BUSCA DE PROD */
+
+.buscar-id {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.input-buscarid {
+    padding: 8px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 14px;
+    width: 140px;
+    outline: none;
+}
+.input-buscarid:focus {
+    border-color: #000087;
+}
+.btn-buscar-id {
+    background-color: #000087;
+    color: #ffffff;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.btn-buscar-id:hover {
+    background-color: #000066;
+}
+
+/* BTN DE CADASTRO PROD */
 
 .add-produto {
     background-color: #000087; 

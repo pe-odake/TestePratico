@@ -1,0 +1,96 @@
+/* FORMULAR DE REGISTER (CADASTRO) */
+
+.register-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f1f5f9;
+}
+
+.register-container {
+    background: #ffffff;
+    padding: 32px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+.register-container h2 {
+    color: #000087;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.form-register {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.form-register label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #334155;
+}
+
+.form-register input {
+    padding: 10px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    outline: none;
+}
+
+.form-register input:focus {
+    border-color: #000087;
+}
+
+.btn-register {
+    background: #000087;
+    color: #ffffff;
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 8px;
+}
+
+.btn-register:hover {
+    background: #000066;
+}
+
+/* FOOTER PARA LINK LOGIN/REGISTER */
+
+.link-footer {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.link-footer p {
+    font-size: 0.9rem;
+    color: #64748b;
+    margin: 0;
+}
+
+.link {
+    color: #000087;
+    font-weight: 600;
+    text-decoration: none;
+    margin-left: 4px;
+    transition: color 0.2s ease-in-out;
+}
+
+.link:hover {
+    color: #000066;
+    text-decoration: underline;
+}

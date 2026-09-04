@@ -50,7 +50,6 @@ function ModalProduto({ isOpen, onClose, produto, onSalvar }) {
             onClose();         
         } catch (error) {
             console.error('Erro ao salvar produto:', error);
-            alert('Erro ao salvar produto!');
         }
     };
 

@@ -34,6 +34,7 @@ function Tabela({ produtos = [], onEditar, onDeletar}) {
                         <th>Descrição</th>
                         <th>Quantidade</th>
                         <th>Valor</th>
+                        <th>Adicionado Por</th>
                         <th>Ativo</th>
                         <th>Ações</th>
                     </tr>
@@ -48,6 +49,12 @@ function Tabela({ produtos = [], onEditar, onDeletar}) {
                                 <td>{produto.descricao}</td>
                                 <td>{produto.quantidade}</td>
                                 <td>{formatarMoeda.format(produto.valor)}</td>
+                                <td>
+                                    <div className="usuario-celula">
+                                        <span>{produto.usuario.id} - {produto.usuario.nome}</span>
+                                        <span>{produto.usuario.email}</span>
+                                    </div>
+                                </td>
                                 <td>{produto.ativo ? "Produto Ativo" : "Produto Inativo"}</td>
                                 <td>
                                     <div className="actions">

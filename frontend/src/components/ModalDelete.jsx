@@ -28,8 +28,8 @@ function ModalDelete({ isOpen, onClose, produto, onSalvar }) {
     };
 
     return (
-        <div className="modal" onClick={onClose}>
-            <div className="modal-container" onClick={(e) => e.stopPropagation()}>
+        <div className="modal-delete" onClick={onClose}>
+            <div className="modal-delete-container" onClick={(e) => e.stopPropagation()}>
                 <button type="button" className="btn-cancelar" onClick={onClose}>
                     Cancelar
                 </button>
